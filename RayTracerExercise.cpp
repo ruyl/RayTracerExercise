@@ -22,7 +22,7 @@ int main()
 	int img_w = 400;
 
 	int img_h = (int) (img_w / aspect_ratio);
-	img_h = (img_h < 1) ? 1 : img_w;
+	img_h = (img_h < 1) ? 1 : img_h;
 
 	auto focal_length = 1.0;
 	auto viewport_height = 2.0;
@@ -41,23 +41,15 @@ int main()
 	auto viewport_topleft = camera_center - vec3(0, 0, focal_length) - viewport_right / 2 - viewport_down / 2;
 	auto pixel_0 = viewport_topleft + ((viewport_h_p_space + viewport_v_p_space) / 2);
 
-	/*int img_w = 256;
-	int img_h = 256;*/
-
 	std::cout << "P3\n" << img_w << ' ' << img_h << "\n255\n";
 
 	for (int j = 0; j < img_h; j++) {
 		std::clog << "\rScanlines remaining: " << (img_h - j) << ' ' << std::flush;
 		
 		for (int i = 0; i < img_w; i++) {
-			color pixel_color = {
-				double(i) / (img_w - 1),
-				double(j) / (img_h - 1),
-				0.0
-			};
-
 			auto pixel_center = pixel_0 + (viewport_h_p_space * i) + (viewport_v_p_space * j);
 			auto view_ray_dir = camera_center - pixel_center;
+
 			auto color_to_draw = ray_color(ray(camera_center, view_ray_dir));
 			write_color(std::cout, color_to_draw);
 		}
