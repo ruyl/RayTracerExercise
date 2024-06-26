@@ -12,7 +12,7 @@ endif()
 project ("RayTracerExercise")
 
 # Add source to this project's executable.
-add_executable (RayTracerExercise "RayTracerExercise.cpp" "RayTracerExercise.h" "ImageFileWriter.cpp" "vec3.h" "color.h")
+add_executable (RayTracerExercise "RayTracerExercise.cpp" "RayTracerExercise.h" "ImageFileWriter.cpp" "vec3.h" "color.h" "ray.h")
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET RayTracerExercise PROPERTY CXX_STANDARD 20)
