@@ -54,7 +54,7 @@ int main()
 			write_color(std::cout, color_to_draw);
 		}
 	}
-	std::clog << "\rComplete!\t" << std::flush;
+	std::clog << "\rComplete!                       \n" << std::flush;
 
 	return 0;
 }
