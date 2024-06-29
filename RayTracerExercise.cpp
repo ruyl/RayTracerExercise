@@ -9,7 +9,21 @@
 
 #include <iostream>
 
+bool hit_sphere(point3 s_center, double radius, const ray& r) {
+	// The equation for whether a ray intersects with a sphere ends up as a quadratic equation, so we get the values
+	// needed to sovle the quadratic formula for the point(s) where the ray intersects
+	auto a = dot(r.direction(), r.direction());
+	auto b = dot(-2 * r.direction(), (s_center - r.origin()));
+	auto c = dot((s_center - r.origin()), (s_center - r.origin())) - radius * radius;
+	auto qf_numer = b * b - 4 * a * c;
+
+	return qf_numer >= 0;
+}
+
 color ray_color(const ray& r) {
+	if (hit_sphere(point3(0, 0, -1), 0.5, r)) {
+		return color(1, 0, 0);
+	}
 	auto unit_dir = unit_vector(r.direction());
 	auto a = .5 * (unit_dir.y() + 1.0);
 	auto blue_blend_over_y = (1 - a) * color(1.0, 1.0, 1.0) + a * color(.5, .7, 1.0) * 1;

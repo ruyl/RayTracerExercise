@@ -36,3 +36,6 @@ out/*
 
 # visual studio directory
 .vs/*
+
+# image output
+image.ppm
