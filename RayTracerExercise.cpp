@@ -12,9 +12,11 @@
 bool hit_sphere(point3 s_center, double radius, const ray& r) {
 	// The equation for whether a ray intersects with a sphere ends up as a quadratic equation, so we get the values
 	// needed to sovle the quadratic formula for the point(s) where the ray intersects
+	auto center_to_ray = (s_center - r.origin());
+
 	auto a = dot(r.direction(), r.direction());
-	auto b = dot(-2 * r.direction(), (s_center - r.origin()));
-	auto c = dot((s_center - r.origin()), (s_center - r.origin())) - radius * radius;
+	auto b = dot(-2 * r.direction(), center_to_ray);
+	auto c = dot(center_to_ray, center_to_ray) - radius * radius;
 	auto qf_numer = b * b - 4 * a * c;
 
 	return qf_numer >= 0;
